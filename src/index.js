@@ -20,7 +20,6 @@ app.listen(port);
 console.log('API funcionando!');
 
 
-
 function execSQLQuery(sqlQry, res) {
     const connection = mysql.createConnection({
         host: 'remotemysql.com',
@@ -56,11 +55,14 @@ router.delete('/clientes/:id', (req, res) =>{
 });
 
 //Adicionar um Usuario
-router.post('/usuarios', (req, res) =>{
-    const nome = req.body.nome.substring(0,150);
-    const senha = req.body.senha.substring(0,11);
-    execSQLQuery(`INSERT INTO Usuario(Nome, CPF) VALUES('${nome}','${cpf}')`, res);
-});
+function cadastra(nm,nic,pass){
+    const nome =nm;
+    const nick= nic;
+    const senha = pass;
+    execSQLQuery(`INSERT INTO Usuario(Nome, Nick, Senha) VALUES('${nome}','${nick}''${senha}')`, res);
+    alert('passou por aqui');
+}
+
 //Atualizar um Usuario
 router.patch('/clientes/:id', (req, res) =>{
     const id = parseInt(req.params.id);
